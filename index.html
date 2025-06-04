@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
   <head>
-    <meta charset="UTF-8">
-  <!-- Meta Pixel Code -->
+    <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
 {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
@@ -12,13 +11,14 @@ n.queue=[];t=b.createElement(e);t.async=!0;
 t.src=v;s=b.getElementsByTagName(e)[0];
 s.parentNode.insertBefore(t,s)}(window, document,'script',
 'https://connect.facebook.net/en_US/fbevents.js');
-fbq('init', '679926244806781');
+fbq('init', '524853043989985');
 fbq('track', 'PageView');
 </script>
 <noscript><img height="1" width="1" style="display:none"
-src="https://www.facebook.com/tr?id=679926244806781&ev=PageView&noscript=1"
+src="https://www.facebook.com/tr?id=524853043989985&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
+    <meta charset="UTF-8">
     <title>GoFun - 限時首存福利</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
     <style>
@@ -617,7 +617,7 @@ src="https://www.facebook.com/tr?id=679926244806781&ev=PageView&noscript=1"
       </div>
 
       <div class="fixed-buttons">
-        <a href="https://97y.me/topnf" class="fixed-btn" id="registerBtn">
+        <a href="https://97y.me/5DbNf" class="fixed-btn" id="registerBtn" data-fb-track="CompleteRegistration" data-pixel-id="524853043989985">
           🎯 立即註冊 🎯
         </a>
       </div>
@@ -633,17 +633,17 @@ src="https://www.facebook.com/tr?id=679926244806781&ev=PageView&noscript=1"
           const countryCode = data.country_code;
 
           if (countryCode === 'KH' || countryCode === 'CN') {
-            registerBtn.href = 'https://97y.me/topnf';
+            registerBtn.href = 'https://97y.me/5FhUL';
           } else {
-            registerBtn.href = 'https://97y.me/topnf';
+            registerBtn.href = 'https://97y.me/5DbNf';
           }
 
         } catch (error) {
           const language = navigator.language || navigator.userLanguage;
           if (language.includes('zh-CN') || language.includes('km')) {
-            registerBtn.href = 'https://97y.me/topnf';
+            registerBtn.href = 'https://97y.me/5FhUL';
           } else {
-            registerBtn.href = 'https://97y.me/topnf';
+            registerBtn.href = 'https://97y.me/5DbNf';
           }
         }
       }
@@ -664,9 +664,59 @@ src="https://www.facebook.com/tr?id=679926244806781&ev=PageView&noscript=1"
         }
       }
 
+      // 设置Facebook事件追踪
+      function setupFacebookTracking() {
+        const registerBtn = document.getElementById('registerBtn');
+
+        registerBtn.addEventListener('click', function(e) {
+          // Facebook标准事件追踪
+          if (typeof fbq !== 'undefined') {
+            // CompleteRegistration 事件
+            fbq('track', 'CompleteRegistration', {
+              content_name: 'GoFun限时首存优惠注册',
+              content_category: '在线娱乐优惠',
+              value: 1288.00,
+              currency: 'USD',
+              content_ids: ['gofun_promo_register'],
+              contents: [{
+                id: 'gofun_promo_register',
+                quantity: 1
+              }]
+            });
+
+            // Lead 事件
+            fbq('track', 'Lead', {
+              content_name: 'GoFun首存优惠按钮点击',
+              content_category: '游戏平台推广',
+              value: 1288.00,
+              currency: 'USD'
+            });
+          }
+
+          // 涟漪效果
+          const ripple = document.createElement('div');
+          ripple.style.position = 'absolute';
+          ripple.style.background = 'rgba(255, 255, 255, 0.6)';
+          ripple.style.borderRadius = '50%';
+          ripple.style.transform = 'scale(0)';
+          ripple.style.animation = 'ripple 0.6s linear';
+          ripple.style.left = (e.offsetX - 10) + 'px';
+          ripple.style.top = (e.offsetY - 10) + 'px';
+          ripple.style.width = '20px';
+          ripple.style.height = '20px';
+
+          this.appendChild(ripple);
+
+          setTimeout(() => {
+            ripple.remove();
+          }, 600);
+        });
+      }
+
       document.addEventListener('DOMContentLoaded', function() {
         createParticles();
         updateLinkByLocation();
+        setupFacebookTracking(); // 添加Facebook事件追踪
 
         const observerOptions = {
           threshold: 0.1,
@@ -683,28 +733,6 @@ src="https://www.facebook.com/tr?id=679926244806781&ev=PageView&noscript=1"
 
         document.querySelectorAll('.reveal').forEach(el => {
           observer.observe(el);
-        });
-
-        const buttons = document.querySelectorAll('.fixed-btn');
-        buttons.forEach(button => {
-          button.addEventListener('click', function(e) {
-            const ripple = document.createElement('div');
-            ripple.style.position = 'absolute';
-            ripple.style.background = 'rgba(255, 255, 255, 0.6)';
-            ripple.style.borderRadius = '50%';
-            ripple.style.transform = 'scale(0)';
-            ripple.style.animation = 'ripple 0.6s linear';
-            ripple.style.left = (e.offsetX - 10) + 'px';
-            ripple.style.top = (e.offsetY - 10) + 'px';
-            ripple.style.width = '20px';
-            ripple.style.height = '20px';
-
-            this.appendChild(ripple);
-
-            setTimeout(() => {
-              ripple.remove();
-            }, 600);
-          });
         });
       });
 
